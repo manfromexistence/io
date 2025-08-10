@@ -2,6 +2,73 @@
 
 https://github.com/astral-sh/uv good now learn from this uv github repo which is rust based python package manager and tell me what does they use for io operations and whatever they use create a rust code like this to show that methods time!!!
 
+```bash
+io-46530534:~/io{main}$ cargo run --release
+   Compiling io v0.1.0 (/home/user/io)
+    Finished `release` profile [optimized] target(s) in 0.54s
+     Running `target/release/io`
+Operation 'Create Directory' took: 0.10ms
+10000 files created.
+Operation 'Create 10000 files' took: 1121.51ms
+10000 files updated.
+Operation 'Update 10000 files' took: 972.60ms
+Operation 'Read 10000 files' took: 178.61ms
+Operation 'Delete 10000 files' took: 840.85ms
+Operation 'Delete Directory' took: 18.25ms
+
+Total time for all operations: 3135.92ms
+io-46530534:~/io{main}$ cargo run --release
+    Finished `release` profile [optimized] target(s) in 0.08s
+     Running `target/release/io`
+Operation 'Create Directory' took: 0.10ms
+10000 files created.
+Operation 'Create 10000 files' took: 692.16ms
+10000 files updated.
+Operation 'Update 10000 files' took: 1183.39ms
+Operation 'Read 10000 files' took: 297.39ms
+Operation 'Delete 10000 files' took: 634.74ms
+Operation 'Delete Directory' took: 17.25ms
+
+Total time for all operations: 2828.56ms
+io-46530534:~/io{main}$ cargo run --release
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target/release/io`
+Operation 'Create Directory' took: 0.10ms
+10000 files created.
+Operation 'Create 10000 files' took: 691.70ms
+10000 files updated.
+Operation 'Update 10000 files' took: 1053.71ms
+Operation 'Read 10000 files' took: 175.44ms
+Operation 'Delete 10000 files' took: 309.33ms
+Operation 'Delete Directory' took: 6.09ms
+
+Total time for all operations: 2236.53ms
+io-46530534:~/io{main}$ cargo run --release
+    Finished `release` profile [optimized] target(s) in 0.05s
+     Running `target/release/io`
+Operation 'Create Directory' took: 0.10ms
+10000 files created.
+Operation 'Create 10000 files' took: 976.79ms
+10000 files updated.
+Operation 'Update 10000 files' took: 1161.33ms
+Operation 'Read 10000 files' took: 389.83ms
+Operation 'Delete 10000 files' took: 775.69ms
+Operation 'Delete Directory' took: 43.40ms
+
+Total time for all operations: 3348.53ms
+io-46530534:~/io{main}$ cargo run --release
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running `target/release/io`
+Operation 'Create Directory' took: 0.37ms
+10000 files created.
+Operation 'Create 10000 files' took: 1146.97ms
+10000 files updated.
+Operation 'Update 10000 files' took: 1151.90ms
+Operation 'Read 10000 files' took: 280.88ms
+Operation 'Delete 10000 files' took: 434.22ms
+Operation 'Delete Directory' took: 10.91ms
+```
+
 
 ```md
 In my rust code I have to ways to do io operations in one I showed a traditional io operation in rust vs my smart io and its 24% faster than the traditional one is it possible to make my smart io even faster list all of the suggestions about how much min faster it can get if I implement that with real data?

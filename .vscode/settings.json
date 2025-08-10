@@ -1,3 +1,4 @@
 {
-  "IDX.agenticWorkspace": false
+  "IDX.agenticWorkspace": false,
+  "git.ignoreLimitWarning": true
 }
