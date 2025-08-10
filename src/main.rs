@@ -6,8 +6,6 @@ use rayon::prelude::*;
 use memmap2::{Mmap, MmapMut};
 use libc::{sched_setaffinity, cpu_set_t, CPU_SET};
 
-// Tokio and Futures are no longer needed as Rayon is faster for this workload.
-
 const NUM_FILES: usize = 10000;
 
 fn get_dir() -> std::path::PathBuf {
@@ -29,10 +27,9 @@ where
         .map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
 
     pool.install(|| {
-        let pin_result = (0..rayon::current_num_threads()).into_par_iter().try_for_each(|id| pin_thread(id));
-        if let Err(e) = pin_result {
-             eprintln!("Warning: Could not pin threads to cores: {}. This can happen in some environments (like containers). Continuing without pinning.", e);
-        }
+        (0..rayon::current_num_threads()).into_par_iter().for_each(|id| {
+            let _ = pin_thread(id);
+        });
         benchmark_fn()
     })
 }
