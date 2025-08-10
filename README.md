@@ -1,5 +1,8 @@
 # IO
 
+https://github.com/astral-sh/uv good now learn from this uv github repo which is rust based python package manager and tell me what does they use for io operations and whatever they use create a rust code like this to show that methods time!!!
+
+
 ```md
 In my rust code I have to ways to do io operations in one I showed a traditional io operation in rust vs my smart io and its 24% faster than the traditional one is it possible to make my smart io even faster list all of the suggestions about how much min faster it can get if I implement that with real data?
 
