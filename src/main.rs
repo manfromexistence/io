@@ -3,7 +3,7 @@ use std::fs::{self, File, OpenOptions};
 use std::io::{self, BufWriter, Write, Read};
 use std::time::Instant;
 use rayon::prelude::*;
-use memmap2::{Mmap, MmapMut};
+use memmap2::{MmapMut};
 use libc::{sched_setaffinity, cpu_set_t, CPU_SET};
 
 const NUM_FILES: usize = 10000;
@@ -41,7 +41,7 @@ fn main() -> io::Result<()> {
     println!("Running traditional_io...");
     run_in_pinned_pool(traditional_io)?;
 
-    println!("\nRunning smart_io (True Parallel)...");
+    println!("\nRunning smart_io (mmap Update Only)...");
     run_in_pinned_pool(smart_io)?;
 
     fs::remove_dir_all(&dir_path)?;
@@ -106,9 +106,9 @@ fn smart_io() -> io::Result<()> {
 
     let start = Instant::now();
     file_paths.par_iter().try_for_each(|path| {
-        let file = File::open(path)?;
-        let mmap = unsafe { Mmap::map(&file)? };
-        let _ = &mmap[..];
+        let mut file = File::open(path)?;
+        let mut buf = Vec::new();
+        file.read_to_end(&mut buf)?;
         Ok::<(), io::Error>(())
     })?;
     let read_time = start.elapsed().as_millis();
