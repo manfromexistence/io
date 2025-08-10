@@ -1,0 +1,16 @@
+[package]
+name = "io"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+crossbeam-deque = "0.8.6"
+libc = "0.2.174"
+memmap2 = "0.9.7"
+rayon = "1.10.0"
+tokio = { version = "1.47.1", features = ["rt-multi-thread", "full"] }
+tokio-uring = { version = "0.5.0", features = [] }
+
+# [dependencies.tokio-uring]
+# version = "0.5.0"
+# features = ["tokio = '1.47.1'"]
